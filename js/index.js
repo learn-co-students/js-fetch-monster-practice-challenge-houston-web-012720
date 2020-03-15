@@ -1,12 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // let page = 1
+    //fetch(page)
+    // fetch(`http://localhost:3000/monsters/?_limit=${num1}&_page=${num2}`)
+    function fetchme(page) {
+        fetch(`http://localhost:3000/monsters/?_limit=10&_page=${page}`)
 
-
-    fetch(`http://localhost:3000/monsters`)
         .then(function(res) {
             return res.json()
         }).then(function(monstersarray) {
             showmonster(monstersarray)
         })
+    }
+
 
     function showmonster(monsters) {
         monsters.forEach(function(monster) {
@@ -26,8 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return div
     }
 
+    const container = document.getElementById('monster-container')
+
     function addmonester(monster) {
-        let container = document.getElementById('monster-container')
         let divmoster = createmonster(monster)
         container.append(divmoster)
     }
@@ -84,5 +90,37 @@ document.addEventListener('DOMContentLoaded', function() {
         })
 
     })
+
+
+
+
+
+    let page = 1
+    let back = document.getElementById('back')
+    back.addEventListener('click', function() {
+        if (page === 1) {
+            alert("Can't go back.")
+        } else {
+            container.innerHTML = ''
+            page--
+            fetchme(page)
+        }
+    })
+
+    let forward = document.getElementById('forward')
+    forward.addEventListener('click', function() {
+        if (page === 19) {
+            alert("Can't go forward.")
+        } else {
+            container.innerHTML = ''
+            page++
+            fetchme(page)
+        }
+    })
+
+    fetchme(page)
+
+
+
 
 })
