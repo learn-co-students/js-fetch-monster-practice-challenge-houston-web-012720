@@ -6001,10 +6001,16 @@
       "id": 1000
     },
     {
-      "name": "13",
-      "age": 13,
-      "description": "131313",
+      "name": "rey",
+      "age": "2",
+      "description": "The lab of all labs",
       "id": 1001
+    },
+    {
+      "name": "Hobie",
+      "age": "4",
+      "description": "gibberish",
+      "id": 1002
     }
   ]
 }
